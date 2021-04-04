@@ -23,8 +23,8 @@ ExampleWindow::ExampleWindow(int width, int height):
 
 	_sky_x(0), _sky_y(0),
 
-	_bush_x(_width-100), _bush_y(489),
-	_bush2_x(_width*2-100), _bush2_y(489)
+	_bush_x(_width+100), _bush_y(489),
+	_bush2_x(_width*2+100), _bush2_y(489)
 {
 	_sky = std::shared_ptr<SDL_Texture>(
 				IMG_LoadTexture(_renderer.get(), "sky.png"),
@@ -98,27 +98,37 @@ void ExampleWindow::render() {
 
 void ExampleWindow::do_logic() {
 
-	_cloud1_x=_cloud1_x+2;
+	_cloud1_x=_cloud1_x+1;
 		if (_cloud1_x >= width())
 			_cloud1_x = -256;
-	_cloud2_x=_cloud2_x+2;
+	_cloud2_x=_cloud2_x+1;
 		if (_cloud2_x >= width())
 			_cloud2_x = -256;
 
-	_redcar1_x=_redcar1_x-2;
+	_redcar1_x=_redcar1_x-4;
 		if (_redcar1_x <= -250)
 			_redcar1_x = 1500;
-	_redcar2_x=_redcar2_x-2;
+	_redcar2_x=_redcar2_x-4;
 		if (_redcar2_x <= -250)
 			_redcar2_x = 1500;
 
+		_tree_x=_tree_x-2;
+		if (_tree_x <= -250)
+			_tree_x = 1500;
+		_tree2_x=_tree2_x-2;
+		if (_tree2_x <= -250)
+			_tree2_x = 1500;
+
+		_bush_x=_bush_x-8;
+		if (_bush_x <= -250)
+			_bush_x = 1500;
+		_bush2_x=_bush2_x-8;
+		if (_bush2_x <= -250)
+			_bush2_x = 1500;
+
 		_road_x--; if (_road_x <= -width()) _road_x = _road_x+(_width*2);
-		_tree_x--; if (_tree_x <= -width()) _tree_x = _tree_x+(_width*2);
-		_bush_x--; if (_bush_x <= -width()) _bush_x = _bush_x+(_width*2);
 
 		_road2_x--; if (_road2_x <= -width()) _road2_x = _road2_x+(_width*2);
-		_tree2_x--; if (_tree2_x <= -width()) _tree2_x = _tree2_x+(_width*2);
-		_bush2_x--; if (_bush2_x <= -width()) _bush2_x = _bush2_x+(_width*2);
 
 }
 
